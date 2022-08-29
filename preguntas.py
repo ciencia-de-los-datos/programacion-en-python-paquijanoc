@@ -14,6 +14,17 @@ Utilice el archivo `data.csv` para resolver las preguntas.
 
 
 def pregunta_01():
+
+    with open('data.csv', "r") as file:
+        datos = file.readlines()  #Me devuelve una lista de strings
+    datos = [line.replace("\n", "") for line in datos]
+    datos = [line.replace("\t",",") for line in datos]
+    datos = [line.split(",") for line in datos]
+    resultado=0
+    columna2 = [row[1] for row in datos]
+    for x in columna2:
+        resultado= resultado + int(x)
+    
     """
     Retorne la suma de la segunda columna.
 
@@ -21,10 +32,24 @@ def pregunta_01():
     214
 
     """
-    return 214
+    return resultado
 
 
 def pregunta_02():
+
+    with open('data.csv', "r") as file:
+        datos = file.readlines()  #Me devuelve una lista de strings
+    datos = [line.replace("\n", "") for line in datos]
+    datos = [line.replace("\t",",") for line in datos]
+    datos = [line.split(",") for line in datos]
+    columna1 = [row[0] for row in datos]
+    from collections import Counter
+    cnt = Counter()
+    for word in columna1:
+        cnt[word] += 1
+    lista=list(cnt.items())
+    lista.sort()
+    
     """
     Retorne la cantidad de registros por cada letra de la primera columna como la lista
     de tuplas (letra, cantidad), ordendas alfabéticamente.
@@ -39,10 +64,22 @@ def pregunta_02():
     ]
 
     """
-    return
+    
+    return  lista
 
 
 def pregunta_03():
+
+    with open('data.csv', "r") as file:
+        datos = file.readlines()  #Me devuelve una lista de strings
+    datos = [line.replace("\n", "") for line in datos]
+    datos = [line.replace("\t",",") for line in datos]
+    datos = [line.split(",") for line in datos]
+    columna1_2 = [row[:2] for row in datos]
+    conver = [(row[0], int(row[1])) for row in columna1_2]
+    respuesta =[(k, sum([y for (x,y) in conver if x == k])) for k in dict(conver).keys()]
+    respuesta.sort()
+
     """
     Retorne la suma de la columna 2 por cada letra de la primera columna como una lista
     de tuplas (letra, suma) ordendas alfabeticamente.
@@ -57,10 +94,26 @@ def pregunta_03():
     ]
 
     """
-    return
+    return respuesta
 
 
 def pregunta_04():
+
+    with open('data.csv', "r") as file:
+        datos = file.readlines()  #Me devuelve una lista de strings
+    datos = [line.replace("\n", "") for line in datos]
+    datos = [line.replace("\t",",") for line in datos]
+    datos = [line.split(",") for line in datos]
+    columna3 = [row[2] for row in datos]
+    fechasep = [line.split("-") for line in columna3]
+    meses = [row[1] for row in fechasep]
+    from collections import Counter
+    cnt = Counter()
+    for word in meses:
+        cnt[word] += 1
+    lista=list(cnt.items())
+    lista.sort()
+
     """
     La columna 3 contiene una fecha en formato `YYYY-MM-DD`. Retorne la cantidad de
     registros por cada mes, tal como se muestra a continuación.
@@ -82,10 +135,18 @@ def pregunta_04():
     ]
 
     """
-    return
+    return lista
 
 
 def pregunta_05():
+
+    with open('data.csv', "r") as file:
+        datos = file.readlines()  #Me devuelve una lista de strings
+    datos = [line.replace("\n", "") for line in datos]
+    datos = [line.replace("\t",",") for line in datos]
+    datos = [line.split(",") for line in datos]
+    columna3 = [row[2] for row in datos]
+    
     """
     Retorne una lista de tuplas con el valor maximo y minimo de la columna 2 por cada
     letra de la columa 1.
