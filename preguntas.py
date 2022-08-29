@@ -15,7 +15,7 @@ Utilice el archivo `data.csv` para resolver las preguntas.
 
 def pregunta_01():
 
-    with open("/data.csv", "r") as file:
+    with open('data.csv', "r") as file:
         datos = file.readlines()  #Me devuelve una lista de strings
     datos = [line.replace("\n", "") for line in datos]
     datos = [line.replace("\t",",") for line in datos]
@@ -32,8 +32,6 @@ def pregunta_01():
     214
 
     """
-
-    
     return resultado
 
 
@@ -52,7 +50,7 @@ def pregunta_02():
     ]
 
     """
-    return
+    return 
 
 
 def pregunta_03():
