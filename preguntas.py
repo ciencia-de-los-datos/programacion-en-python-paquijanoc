@@ -15,7 +15,7 @@ Utilice el archivo `data.csv` para resolver las preguntas.
 
 def pregunta_01():
 
-    with open("/tmp/data.csv.1", "r") as file:
+    with open("/data.csv.1", "r") as file:
         datos = file.readlines()  #Me devuelve una lista de strings
     datos = [line.replace("\n", "") for line in datos]
     datos = [line.replace("\t",",") for line in datos]
