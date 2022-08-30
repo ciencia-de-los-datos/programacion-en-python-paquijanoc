@@ -246,8 +246,9 @@ def pregunta_07():
 
 
 def pregunta_08():
-        with open('data.csv', "r") as file:
-        datos = file.readlines()  #Me devuelve una lista de strings
+    
+    with open('data.csv', "r") as file:
+    datos = file.readlines()  #Me devuelve una lista de strings
     datos = [line.replace("\n", "") for line in datos]
     datos = [line.replace("\t",",") for line in datos]
     datos = [line.split(",") for line in datos]
