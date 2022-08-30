@@ -146,7 +146,7 @@ def pregunta_05():
     datos = [line.replace("\t",",") for line in datos]
     datos = [line.split(",") for line in datos]
     columna1_2 = [row[:2] for row in datos]
-    conver = [(row[0], row[1]) for row in columna1_2]
+    conver = [(row[0], int(row[1])) for row in columna1_2]
     respuesta =[(k, max([y for (x,y) in conver if x == k]), min([y for (x,y) in conver if x == k])) for k in dict(conver).keys()]
     respuesta.sort()
     """
@@ -173,8 +173,16 @@ def pregunta_06():
     datos = [line.replace("\n", "") for line in datos]
     datos = [line.replace("\t",",") for line in datos]
     datos = [line.split(",") for line in datos]
-    columna1_2 = [row[:2] for row in datos]
-        
+    columna5 = [row[4] for row in datos]
+    columna5 = [line.split(",") for line in columna5]
+    lista5 = []
+    for item in columna5:
+        lista5 += item
+    lista5 = [item.split(":") for item in lista5]
+    conver = [(row[0], int(row[1])) for row in lista5]
+    respuesta =[(k, min([y for (x,y) in conver if x == k]), max([y for (x,y) in conver if x == k])) for k in dict(conver).keys()]
+    respuesta.sort()
+
     """
     La columna 5 codifica un diccionario donde cada cadena de tres letras corresponde a
     una clave y el valor despues del caracter `:` corresponde al valor asociado a la
@@ -196,7 +204,7 @@ def pregunta_06():
     ]
 
     """
-    return
+    return respuesta
 
 
 def pregunta_07():
