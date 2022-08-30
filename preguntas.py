@@ -208,6 +208,20 @@ def pregunta_06():
 
 
 def pregunta_07():
+    
+    with open('data.csv', "r") as file:
+        datos = file.readlines()  #Me devuelve una lista de strings
+    datos = [line.replace("\n", "") for line in datos]
+    datos = [line.replace("\t",",") for line in datos]
+    datos = [line.split(",") for line in datos]
+    columna1_2 = [row[:2] for row in datos]
+    conver = [(int(row[1]),row[0]) for row in columna1_2]
+    prueba=[]
+    rta=[(k, prueba.append([y for (x,y) in conver if x == k])) for k in dict(conver).keys()]
+    num = [row[0] for row in rta]
+    union = zip(num,prueba)
+    respuesta=list(union)
+    respuesta.sort()
     """
     Retorne una lista de tuplas que asocien las columnas 0 y 1. Cada tupla contiene un
     valor posible de la columna 2 y una lista con todas las letras asociadas (columna 1)
@@ -228,10 +242,28 @@ def pregunta_07():
     ]
 
     """
-    return
+    return respuesta
 
 
 def pregunta_08():
+        with open('data.csv', "r") as file:
+        datos = file.readlines()  #Me devuelve una lista de strings
+    datos = [line.replace("\n", "") for line in datos]
+    datos = [line.replace("\t",",") for line in datos]
+    datos = [line.split(",") for line in datos]
+    columna1_2 = [row[:2] for row in datos]
+    conver = [(int(row[1]),row[0]) for row in columna1_2]
+    prueba=[]
+    rta=[(k, prueba.append([y for (x,y) in conver if x == k])) for k in dict(conver).keys()]
+    num = [row[0] for row in rta]
+    prueba2=[]
+    for item in prueba:
+        x = sorted(list(set(item)))
+        prueba2.append(x)
+    union = zip(num,prueba2)
+    respuesta=list(union)
+    respuesta.sort()
+
     """
     Genere una lista de tuplas, donde el primer elemento de cada tupla contiene  el valor
     de la segunda columna; la segunda parte de la tupla es una lista con las letras
@@ -253,7 +285,7 @@ def pregunta_08():
     ]
 
     """
-    return
+    return respuesta
 
 
 def pregunta_09():
