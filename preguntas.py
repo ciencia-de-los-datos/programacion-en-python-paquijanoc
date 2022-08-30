@@ -145,8 +145,10 @@ def pregunta_05():
     datos = [line.replace("\n", "") for line in datos]
     datos = [line.replace("\t",",") for line in datos]
     datos = [line.split(",") for line in datos]
-    columna3 = [row[2] for row in datos]
-    
+    columna1_2 = [row[:2] for row in datos]
+    conver = [(row[0], row[1]) for row in columna1_2]
+    respuesta =[(k, max([y for (x,y) in conver if x == k]), min([y for (x,y) in conver if x == k])) for k in dict(conver).keys()]
+    respuesta.sort()
     """
     Retorne una lista de tuplas con el valor maximo y minimo de la columna 2 por cada
     letra de la columa 1.
@@ -161,10 +163,18 @@ def pregunta_05():
     ]
 
     """
-    return
+    return respuesta
 
 
 def pregunta_06():
+
+    with open('data.csv', "r") as file:
+        datos = file.readlines()  #Me devuelve una lista de strings
+    datos = [line.replace("\n", "") for line in datos]
+    datos = [line.replace("\t",",") for line in datos]
+    datos = [line.split(",") for line in datos]
+    columna1_2 = [row[:2] for row in datos]
+        
     """
     La columna 5 codifica un diccionario donde cada cadena de tres letras corresponde a
     una clave y el valor despues del caracter `:` corresponde al valor asociado a la
