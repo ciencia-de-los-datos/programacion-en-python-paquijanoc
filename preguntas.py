@@ -290,6 +290,26 @@ def pregunta_08():
 
 
 def pregunta_09():
+
+    with open('data.csv', "r") as file:
+        datos = file.readlines()  #Me devuelve una lista de strings
+    datos = [line.replace("\n", "") for line in datos]
+    datos = [line.replace("\t","/") for line in datos]
+    datos = [line.split("/") for line in datos]
+    columna5 = [row[4] for row in datos]
+    columna5 = [line.split(",") for line in columna5]
+    lista5 = []
+    for item in columna5:
+        lista5 += item
+    lista5 = [item.split(":") for item in lista5]
+    claves = [row[0] for row in lista5]
+
+    from collections import Counter
+    d1 = Counter(claves)
+    lista = list(d1.items())
+    lista.sort()
+    respuesta=dict(lista)
+
     """
     Retorne un diccionario que contenga la cantidad de registros en que aparece cada
     clave de la columna 5.
@@ -309,10 +329,34 @@ def pregunta_09():
     }
 
     """
-    return
+    return respuesta
 
 
 def pregunta_10():
+
+    with open('data.csv', "r") as file:
+        datos = file.readlines()  #Me devuelve una lista de strings
+    datos = [line.replace("\n", "") for line in datos]
+    datos = [line.replace("\t","/") for line in datos]
+    datos = [line.split("/") for line in datos]
+    columna1 = [row[0] for row in datos]
+    columna4=[row[3] for row in datos]
+    columna4 = [line.split(",") for line in columna4]
+    num4=[]
+    for item in columna4:
+        num4 += str(len(item))
+    num4=[int(x) for x in num4]
+
+    columna5=[row[4] for row in datos]
+    columna5 = [line.split(",") for line in columna5]
+    num5=[]
+    for item in columna5:
+      num5 += str(len(item))
+    num5=[int(x) for x in num5]
+
+    union = zip(columna1,num4,num5)
+    respuesta=list(union)
+
     """
     Retorne una lista de tuplas contengan por cada tupla, la letra de la columna 1 y la
     cantidad de elementos de las columnas 4 y 5.
@@ -330,7 +374,7 @@ def pregunta_10():
 
 
     """
-    return
+    return respuesta
 
 
 def pregunta_11():
