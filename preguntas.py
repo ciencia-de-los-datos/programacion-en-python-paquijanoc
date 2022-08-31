@@ -378,6 +378,36 @@ def pregunta_10():
 
 
 def pregunta_11():
+
+    with open('data.csv', "r") as file:
+        datos = file.readlines()  #Me devuelve una lista de strings
+    datos = [line.replace("\n", "") for line in datos]
+    datos = [line.replace("\t","/") for line in datos]
+    datos = [line.split("/") for line in datos]
+    columna2 = [row[1] for row in datos]
+    num4=[]
+    for item in columna4:
+      num4 += str(len(item))
+    num4=[int(x) for x in num4] #Obtengo los tamaños de los string en las letras
+
+    numeros = [x  for x,y in zip(columna2,num4)
+                 for x in [x]*y]
+    numeros=[int(x) for x in numeros] #Multiplico la cant de veces de las letras por los numeros
+
+    columna4 = [row[3] for row in datos]
+    columna4= [line.split(",") for line in columna4] 
+    letras = []
+    for item in columna4:
+      letras += item #Separo las letras en una lista simple
+
+    conver=[]
+    for lista, dato in zip(letras, numeros):
+      a=(lista,dato)
+      conver.append(a) #Uno numeros con letras, ya aqui estan con la misma cant de datos
+
+    respuesta =[(k, sum([y for (x,y) in conver if x == k])) for k in dict(conver).keys()]
+    respuesta.sort()
+    respuesta=dict(respuesta)   
     """
     Retorne un diccionario que contengan la suma de la columna 2 para cada letra de la
     columna 4, ordenadas alfabeticamente.
@@ -395,10 +425,43 @@ def pregunta_11():
 
 
     """
-    return
+    return respuesta
 
 
 def pregunta_12():
+
+    with open('data.csv', "r") as file:
+        datos = file.readlines()  #Me devuelve una lista de strings
+    datos = [line.replace("\n", "") for line in datos]
+    datos = [line.replace("\t","/") for line in datos]
+    datos = [line.split("/") for line in datos]
+    columna5 = [row[4] for row in datos]
+    columna5 = [line.split(",") for line in columna5]
+    valores = []
+    for item in columna5:
+      valores += item #Separo las letras en una lista simple
+    valores = [line.split(":") for line in valores]
+    valores=[row[1] for row in valores]
+    valores=[int(x) for x in valores]
+
+
+    columna1 = [row[0] for row in datos]
+    num5=[]
+    for item in columna5:
+      num5 += str(len(item))
+    num5=[int(x) for x in num5] #Obtengo los tamaños de los string en las letras
+
+    claves = [x  for x,y in zip(columna1,num5)
+                 for x in [x]*y] #Multiplico la cant de letras
+ 
+    conver=[]
+    for lista, dato in zip(claves,valores):
+      a=(lista,dato)
+      conver.append(a) #Uno numeros con letras, ya aqui estan con la misma cant de datos
+
+    respuesta =[(k, sum([y for (x,y) in conver if x == k])) for k in dict(conver).keys()]
+    respuesta.sort()
+    respuesta=dict(respuesta)
     """
     Genere un diccionario que contengan como clave la columna 1 y como valor la suma de
     los valores de la columna 5 sobre todo el archivo.
@@ -413,4 +476,4 @@ def pregunta_12():
     }
 
     """
-    return
+    return respuesta
