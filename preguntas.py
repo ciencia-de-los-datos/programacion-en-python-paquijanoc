@@ -112,7 +112,7 @@ def pregunta_04():
     for word in meses:
         cnt[word] += 1
     lista=list(cnt.items())
-    lista.sort()
+    lista_or=sorted(lista,reverse=False)
 
     """
     La columna 3 contiene una fecha en formato `YYYY-MM-DD`. Retorne la cantidad de
@@ -135,7 +135,7 @@ def pregunta_04():
     ]
 
     """
-    return lista
+    return lista_or
 
 
 def pregunta_05():
