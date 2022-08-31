@@ -378,15 +378,20 @@ def pregunta_10():
 
 
 def pregunta_11():
-
+    
     with open('data.csv', "r") as file:
         datos = file.readlines()  #Me devuelve una lista de strings
     datos = [line.replace("\n", "") for line in datos]
     datos = [line.replace("\t","/") for line in datos]
     datos = [line.split("/") for line in datos]
-    columna2 = [row[1] for row in datos]
+
     columna4 = [row[3] for row in datos]
-    
+    columna4= [line.split(",") for line in columna4] 
+    letras = []
+    for item in columna4:
+      letras += item #Separo las letras en una lista simple
+
+    columna2 = [row[1] for row in datos]
     num4=[]
     for item in columna4:
       num4 += str(len(item))
@@ -396,20 +401,15 @@ def pregunta_11():
                  for x in [x]*y]
     numeros=[int(x) for x in numeros] #Multiplico la cant de veces de las letras por los numeros
 
-    
-    columna4= [line.split(",") for line in columna4] 
-    letras = []
-    for item in columna4:
-      letras += item #Separo las letras en una lista simple
-
     conver=[]
     for lista, dato in zip(letras, numeros):
-      a=(lista,dato)
-      conver.append(a) #Uno numeros con letras, ya aqui estan con la misma cant de datos
+        a=(lista,dato)
+        conver.append(a) 
 
     respuesta =[(k, sum([y for (x,y) in conver if x == k])) for k in dict(conver).keys()]
     respuesta.sort()
     respuesta=dict(respuesta)   
+
     """
     Retorne un diccionario que contengan la suma de la columna 2 para cada letra de la
     columna 4, ordenadas alfabeticamente.
