@@ -385,6 +385,8 @@ def pregunta_11():
     datos = [line.replace("\t","/") for line in datos]
     datos = [line.split("/") for line in datos]
     columna2 = [row[1] for row in datos]
+    columna4 = [row[3] for row in datos]
+    
     num4=[]
     for item in columna4:
       num4 += str(len(item))
@@ -394,7 +396,7 @@ def pregunta_11():
                  for x in [x]*y]
     numeros=[int(x) for x in numeros] #Multiplico la cant de veces de las letras por los numeros
 
-    columna4 = [row[3] for row in datos]
+    
     columna4= [line.split(",") for line in columna4] 
     letras = []
     for item in columna4:
